@@ -1,0 +1,23 @@
+<order>
+    <hop>
+      <from>Select values</from>
+      <to>Copy rows to result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get list of tables</from>
+      <to>tables.txt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get list of tables</from>
+      <to>Concat Fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

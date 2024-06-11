@@ -1,0 +1,22 @@
+Based on the hop order and steps file, the sequence of steps is as follows:
+
+1. Get files from result
+2. Text file output
+
+Now, let's convert these steps into Spark code:
+
+Step 1: Get files from result
+In Pentaho, this step is used to get the list of files from the previous result. In Spark, we can use the wholeTextFiles method to get the files from a directory.
+
+```scala
+val files = sc.wholeTextFiles("path_to_directory")
+```
+
+Step 2: Text file output
+In Pentaho, this step is used to write the result into a text file. In Spark, we can use the saveAsTextFile method to save the result into a text file.
+
+```scala
+files.saveAsTextFile("${java.io.tmpdir}files")
+```
+
+Please replace "path_to_directory" with the actual directory path where the files are located. Also, "${java.io.tmpdir}files" is the output directory where the result will be saved. If you want to save the result in a different directory, please replace "${java.io.tmpdir}files" with your preferred directory path.

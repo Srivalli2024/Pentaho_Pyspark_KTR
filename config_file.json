@@ -1,0 +1,8 @@
+{
+"openai_api_key": "53d37746b4c547c7b317a88efe0c4685",
+"openai_api_type": "azure",
+"openai_api_base": "https://caecoai0e8aoa01.openai.azure.com/",
+"openai_api_version": "2023-12-01-preview",
+"blob_storage_connection_string":"DefaultEndpointsProtocol=https;AccountName=genaiuc1datamigr;AccountKey=LPq3bQBJoUYdU7RZBUT1ANcOYarWtPEmCc/NszTBNt3WxtwsLt3B6AORIbVNDZcE6fMxrlstH9Ta+AStvUu7QQ==;EndpointSuffix=core.windows.net",
+"container_name":"genai-uc1-data-migr"
+}

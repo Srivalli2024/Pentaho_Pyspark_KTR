@@ -1,0 +1,35 @@
+Based on the hop order and steps file, the sequence of steps is as follows:
+
+1. Number of rows in ${TABLENAME}
+2. rows-${TABLENAME}.txt
+
+Now, let's convert these steps into Spark code:
+
+Step 1: Number of rows in ${TABLENAME}
+
+This step is a TableInput type, which means it's reading data from a table. The SQL query is "SELECT count(*) as NrRows FROM ${TABLENAME}". This can be converted into Spark code as follows:
+
+```scala
+val tableName = "your_table_name" // replace with your table name
+val df = spark.sql(s"SELECT count(*) as NrRows FROM $tableName")
+```
+
+Step 2: rows-${TABLENAME}.txt
+
+This step is a TextFileOutput type, which means it's writing the output to a text file. The file name is "${java.io.tmpdir}/rows-${TABLENAME}.txt". This can be converted into Spark code as follows:
+
+```scala
+val outputDir = System.getProperty("java.io.tmpdir")
+df.coalesce(1).write.format("text").option("header", "true").save(s"$outputDir/rows-$tableName.txt")
+```
+
+So, the complete Spark code is:
+
+```scala
+val tableName = "your_table_name" // replace with your table name
+val df = spark.sql(s"SELECT count(*) as NrRows FROM $tableName")
+val outputDir = System.getProperty("java.io.tmpdir")
+df.coalesce(1).write.format("text").option("header", "true").save(s"$outputDir/rows-$tableName.txt")
+```
+
+Please replace "your_table_name" with your actual table name.

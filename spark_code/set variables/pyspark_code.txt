@@ -1,0 +1,31 @@
+Based on the hop order file and the steps file, the sequence of steps is as follows:
+
+1. Get one tablename
+2. Set ${TABLENAME}
+
+Now, let's convert these steps into Spark code.
+
+1. Get one tablename
+
+In Pentaho, the "RowsFromResult" step is used to get the result of a previous step. In Spark, we can use the "collect()" function to get the result of a previous transformation. Assuming that the previous transformation is a DataFrame named "df", the equivalent Spark code would be:
+
+```scala
+val tablename = df.collect()
+```
+
+2. Set ${TABLENAME}
+
+In Pentaho, the "SetVariable" step is used to set a variable that can be used in subsequent steps. In Spark, we can simply assign the result of the previous step to a variable. Assuming that the result of the previous step is stored in the variable "tablename", the equivalent Spark code would be:
+
+```scala
+val TABLENAME = tablename
+```
+
+So, the complete Spark code for the entire flow would be:
+
+```scala
+val tablename = df.collect()
+val TABLENAME = tablename
+```
+
+Please note that this is a simplified conversion and the actual Spark code may vary depending on the context and the specific requirements of your project.

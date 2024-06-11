@@ -1,0 +1,8 @@
+<order>
+    <hop>
+      <from>Get files from result</from>
+      <to>Text file output</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

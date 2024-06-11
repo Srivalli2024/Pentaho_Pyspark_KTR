@@ -1,0 +1,53 @@
+Based on the hop order and the steps file, the sequence of steps is as follows:
+
+1. get list of tables
+2. Concat Fields
+3. Select values
+4. Copy rows to result
+5. tables.txt
+
+Now, let's convert these steps into Spark code:
+
+1. get list of tables
+
+```scala
+// Step 1: get list of tables
+val jdbcDF = spark.read
+  .format("jdbc")
+  .option("url", "jdbc:mysql://localhost:3306/database")
+  .option("dbtable", "(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME NOT LIKE 'SYSTEM_%') as tables")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
+```
+
+2. Concat Fields
+
+```scala
+// Step 2: Concat Fields
+import org.apache.spark.sql.functions.concat_ws
+val concatDF = jdbcDF.withColumn("TABLE_SCHEMA_NAME", concat_ws(".", $"TABLE_SCHEMA", $"TABLE_NAME"))
+```
+
+3. Select values
+
+```scala
+// Step 3: Select values
+val selectDF = concatDF.select($"TABLE_SCHEMA_NAME".as("tablename"))
+```
+
+4. Copy rows to result
+
+```scala
+// Step 4: Copy rows to result
+// In Spark, this step is not necessary as the DataFrame selectDF already holds the result.
+```
+
+5. tables.txt
+
+```scala
+// Step 5: tables.txt
+selectDF.write.format("csv").option("header", "true").save("/path/to/tables.txt")
+```
+
+Please replace the database URL, username, password, and the path to save the tables.txt file with your actual values.

@@ -1,0 +1,8 @@
+<order>
+    <hop>
+      <from>Number of rows in ${TABLENAME}</from>
+      <to>rows-${TABLENAME}.txt</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

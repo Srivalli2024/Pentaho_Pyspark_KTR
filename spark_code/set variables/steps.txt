@@ -1,0 +1,51 @@
+<step>
+    <name>get one tablename</name>
+    <type>RowsFromResult</type>
+    <description />
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <field_name />
+           <schema_name />
+           </partitioning>
+    <fields>      <field>        <name>tablename</name>
+        <type>String</type>
+        <length>64</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema />
+    <GUI>
+      <xloc>113</xloc>
+      <yloc>71</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  
+<step>
+    <name>set ${TABLENAME}</name>
+    <type>SetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <field_name />
+           <schema_name />
+           </partitioning>
+    <fields>
+      <field>
+        <field_name>tablename</field_name>
+        <variable_name>TABLENAME</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        </field>
+      </fields>
+     <cluster_schema />
+    <GUI>
+      <xloc>274</xloc>
+      <yloc>70</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+

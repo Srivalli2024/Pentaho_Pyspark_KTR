@@ -1,0 +1,4 @@
+<order>
+  <hop> <from>get one tablename</from><to>set ${TABLENAME}</to><enabled>Y</enabled> </hop>  </order>
+
+  
