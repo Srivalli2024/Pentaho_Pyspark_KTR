@@ -1,0 +1,103 @@
+<order>
+    <hop>
+      <from>DB lookup ztob_businessday</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Concat Fields market_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields market_name</from>
+      <to>Concat Fields selection_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields selection_name</from>
+      <to>Formula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formula</from>
+      <to>Duplicate Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Duplicate Date &amp; Time fields</from>
+      <to>Format Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>Insert/Update ztob_sportbets</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input vSapBwSportBets</from>
+      <to>DB lookup ztob_businessday</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>DB lookup ztob_timetable</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Wager</from>
+      <to>Avoid update empty row - Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Wager</from>
+      <to>Insert/Update ztob_sportbets_wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB lookup ztob_timetable</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Memory Group by Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Get max_minusone</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get max_minusone</from>
+      <to>Select field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get last updated date</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select field</from>
+      <to>Table input vSapBwSportBets</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>OB005.2.1 MapR - ztob_sportbets</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Wager</from>
+      <to>OB005.2.2 MapR - ztob_sportbets_wager</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

@@ -1,0 +1,93 @@
+<order>
+    <hop>
+      <from>Business Date 2</from>
+      <to>Filter rows 1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>YMD</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 1</from>
+      <to>Select timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select timestamp</from>
+      <to>lookup business_date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>find key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 3</from>
+      <to>generate business_date and cdc</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>YMD</from>
+      <to>Copy rows to result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>find key</from>
+      <to>lookup business_date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>format</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>generate business_date and cdc</from>
+      <to>format</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>generate business_date and cdc 2</from>
+      <to>Select values 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup business_date</from>
+      <to>generate business_date and cdc 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Get selection criteria</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get last businessday</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get last updated date</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get selection criteria</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Join</from>
+      <to>Get Variables</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

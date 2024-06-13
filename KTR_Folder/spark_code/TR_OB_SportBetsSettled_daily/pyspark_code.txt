@@ -1,0 +1,92 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. Table input vSapBwSportBetsSettled
+```scala
+val df = spark.read.format("jdbc")
+  .option("url", "jdbc:postgresql://localhost:5432/mydb")
+  .option("dbtable", "vsapbwsportbetssettled")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
+```
+
+2. DB lookup ztob_businessday
+```scala
+val dfLookup = spark.read.format("jdbc")
+  .option("url", "jdbc:postgresql://localhost:5432/mydb")
+  .option("dbtable", "ztob_businessday")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
+
+val dfJoined = df.join(dfLookup, df("creation_date") === dfLookup("start_time") && df("creation_date") === dfLookup("end_time"))
+```
+
+3. Replace in string
+```scala
+val dfReplaced = dfJoined.withColumn("market_name_1", regexp_replace(col("market_name_1"), "\\|", " "))
+  .withColumn("market_name_2", regexp_replace(col("market_name_2"), "\\|", " "))
+  .withColumn("selection_name_1", regexp_replace(col("selection_name_1"), "\\|", " "))
+  .withColumn("selection_name_2", regexp_replace(col("selection_name_2"), "\\|", " "))
+```
+
+4. String operations
+```scala
+val dfTrimmed = dfReplaced.withColumn("market_name_1", trim(col("market_name_1")))
+  .withColumn("market_name_2", trim(col("market_name_2")))
+  .withColumn("selection_name_1", trim(col("selection_name_1")))
+  .withColumn("selection_name_2", trim(col("selection_name_2")))
+  .withColumn("bet_type", trim(col("bet_type")))
+  .withColumn("last_settled_info_1", trim(col("last_settled_info_1")))
+  .withColumn("last_settled_info_2", trim(col("last_settled_info_2")))
+  .withColumn("last_settled_info_3", trim(col("last_settled_info_3")))
+  .withColumn("last_settled_info_4", trim(col("last_settled_info_4")))
+```
+
+5. Concat Fields market_name
+```scala
+val dfConcat = dfTrimmed.withColumn("market_name", concat(col("market_name_1"), lit(" "), col("market_name_2")))
+```
+
+6. Concat Fields selection_name
+```scala
+val dfConcat = dfConcat.withColumn("selection_name", concat(col("selection_name_1"), lit(" "), col("selection_name_2")))
+```
+
+7. Concat Fields last_settled_info
+```scala
+val dfConcat = dfConcat.withColumn("last_settled_info", concat(col("last_settled_info_1"), lit(" "), col("last_settled_info_2"), lit(" "), col("last_settled_info_3"), lit(" "), col("last_settled_info_4")))
+```
+
+8. Formula
+```scala
+val dfFormula = dfConcat.withColumn("multiple_bet", when(col("bet_type") === "SGL", "N").otherwise("Y"))
+```
+
+9. User Defined Java Expression
+```scala
+val dfJavaExpr = dfFormula.withColumn("settled_flag", when(col("last_settled_date").isNull, "N").otherwise("Y"))
+```
+
+10. Duplicate Date & Time fields
+```scala
+val dfDuplicate = dfJavaExpr.withColumn("creation_date_d", col("creation_date"))
+  .withColumn("creation_date_t", col("creation_date"))
+  .withColumn("last_settled_date_d", col("last_settled_date"))
+  .withColumn("last_settled_date_t", col("last_settled_date"))
+  .withColumn("validation_date_d", col("validation_date"))
+  .withColumn("validation_date_t", col("validation_date"))
+```
+
+11. Format Date & Time fields
+```scala
+val dfFormatted = dfDuplicate.withColumn("business_day", date_format(col("business_day"), "yyyyMMdd"))
+  .withColumn("creation_date_d", date_format(col("creation_date_d"), "yyyyMMdd"))
+  .withColumn("creation_date_t", date_format(col("creation_date_t"), "HH:mm:ss"))
+  .withColumn("last_settled_date_d", date_format(col("last_settled_date_d"), "yyyyMMdd"))
+  .withColumn("last_settled_date_t", date_format(col("last_settled_date_t"), "HH:mm:ss"))
+  .withColumn("validation_date_d", date_format(col("validation_date_d"), "yyyyMMdd"))
+  .withColumn("validation_date_t", date_format(col("validation_date_t"), "HH:mm:ss"))
+```
+
+The remaining steps involve filtering rows, grouping by memory, and inserting/updating data into various tables. These steps would follow a similar pattern to the steps above, using Spark DataFrame transformations such as `filter()`, `groupBy()`, and `write()`.

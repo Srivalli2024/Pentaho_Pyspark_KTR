@@ -1,0 +1,103 @@
+<order>
+    <hop>
+      <from>Iselect</from>
+      <to>Output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>user</from>
+      <to>View</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>View</from>
+      <to>Iselect</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DView 2</from>
+      <to>Dselect 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dselect 2</from>
+      <to>delete priviliges 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables 2</from>
+      <to>block 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Iselect 2</from>
+      <to>Output11</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>View 2</from>
+      <to>Iselect 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>block 2</from>
+      <to>user 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>user 2</from>
+      <to>View 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>DView 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>DView 2 2</from>
+      <to>Dselect 2 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dselect 2 2</from>
+      <to>delete priviliges 2 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>DView 2 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>delete priviliges 2</from>
+      <to>out</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>delete priviliges 2 2</from>
+      <to>out</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables 2</from>
+      <to>Join Rows (cartesian product)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>users_inp 2</from>
+      <to>Join Rows (cartesian product)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Join Rows (cartesian product)</from>
+      <to>Switch / Case</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>user</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

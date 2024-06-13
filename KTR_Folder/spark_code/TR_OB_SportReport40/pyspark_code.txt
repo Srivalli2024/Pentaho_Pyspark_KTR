@@ -1,0 +1,121 @@
+Based on the hop order and the steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. Get max date
+```python
+max_date = spark.sql("SELECT MAX(market_settlement_date) max_date FROM ztob_sportreport40")
+```
+
+2. Get last businessday
+```python
+max_busday = spark.sql("SELECT MAX(end_timestamp) max_busday FROM ztall_businessday WHERE system = 'OB'")
+```
+
+3. Merge Join
+```python
+from pyspark.sql.functions import col
+merged_df = max_date.join(max_busday, how='full_outer')
+```
+
+4. Modified Java Script Value
+```python
+from pyspark.sql.functions import expr
+merged_df = merged_df.withColumn("max_secondadd1", expr("date_add(max_date, 1)"))
+```
+
+5. Get selection criteria
+```python
+from pyspark.sql.functions import when
+merged_df = merged_df.withColumn("select_from", when(col("fr_date").isNull(), col("max_secondadd1")).otherwise(col("fr_date")))
+merged_df = merged_df.withColumn("select_to", when(col("to_date").isNull(), col("max_busday")).otherwise(col("to_date")))
+```
+
+6. Select values
+```python
+selected_df = merged_df.select("select_from", "select_to")
+```
+
+7. Table input vSapBwSportReport40
+```python
+vsapbwsportreport40_df = spark.sql("SELECT * FROM vsapbwsportreport40 WHERE market_settlement_date >= select_from AND market_settlement_date <= select_to")
+```
+
+8. Add constants
+```python
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("system", lit("OB"))
+```
+
+9. Placement_time business_id
+```python
+# Assuming ztall_businessday is a DataFrame loaded from the ztall_businessday table
+placement_time_business_id = ztall_businessday.filter((col("system") == "OB") & (col("start_timestamp") <= col("placement_time")) & (col("end_timestamp") >= col("placement_time"))).select(col("business_id").alias("placement_time_business_id"))
+```
+
+10. Market_settlement_date business_id
+```python
+market_settlement_date_business_id = ztall_businessday.filter((col("system") == "OB") & (col("start_timestamp") <= col("market_settlement_date")) & (col("end_timestamp") >= col("market_settlement_date"))).select(col("business_id").alias("market_settlement_date_business_id"))
+```
+
+11. Replace in string
+```python
+from pyspark.sql.functions import regexp_replace
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("match_name_1", regexp_replace(col("match_name_1"), "\\|", " "))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("match_name_2", regexp_replace(col("match_name_2"), "\\|", " "))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_name_1", regexp_replace(col("market_name_1"), "\\|", " "))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_name_2", regexp_replace(col("market_name_2"), "\\|", " "))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("selection_name_1", regexp_replace(col("selection_name_1"), "\\|", " "))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("selection_name_2", regexp_replace(col("selection_name_2"), "\\|", " "))
+```
+
+12. String operations
+```python
+from pyspark.sql.functions import trim
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("match_name_1", trim(col("match_name_1")))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("match_name_2", trim(col("match_name_2")))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_name_1", trim(col("market_name_1")))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_name_2", trim(col("market_name_2")))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("selection_name_1", trim(col("selection_name_1")))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("selection_name_2", trim(col("selection_name_2")))
+```
+
+13. Concat Fields match_name
+```python
+from pyspark.sql.functions import concat
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("match_name", concat(col("match_name_1"), col("match_name_2")))
+```
+
+14. Concat Fields market_name
+```python
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_name", concat(col("market_name_1"), col("market_name_2")))
+```
+
+15. Concat Fields selection_name
+```python
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("selection_name", concat(col("selection_name_1"), col("selection_name_2")))
+```
+
+16. Duplicate Date & Time fields
+```python
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("placement_time_d", col("placement_time"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("placement_time_t", col("placement_time"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_settlement_date_d", col("market_settlement_date"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_settlement_date_t", col("market_settlement_date"))
+```
+
+17. Format Date & Time fields
+```python
+from pyspark.sql.functions import date_format
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("placement_time_d", date_format(col("placement_time_d"), "yyyyMMdd"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("placement_time_t", date_format(col("placement_time_t"), "HH:mm:ss"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_settlement_date_d", date_format(col("market_settlement_date_d"), "yyyyMMdd"))
+vsapbwsportreport40_df = vsapbwsportreport40_df.withColumn("market_settlement_date_t", date_format(col("market_settlement_date_t"), "HH:mm:ss"))
+```
+
+18. Insert/Update ztob_sportreport40
+```python
+# Assuming ztob_sportreport40_df is a DataFrame loaded from the ztob_sportreport40 table
+from pyspark.sql.functions import lit
+ztob_sportreport40_df = ztob_sportreport40_df.alias("a").join(vsapbwsportreport40_df.alias("b"), (col("a.bet_id") == col("b.bet_id")) & (col("a.match_id") == col("b.match_id")) & (col("a.market_id") == col("b.market_id")) & (col("a.selection_id") == col("b.selection_id")), "leftouter")
+ztob_sportreport40_df = ztob_sportreport40_df.select([when(col("b." + xx).isNull(), col("a." + xx)).otherwise(col("b." + xx)).alias(xx) for xx in ztob_sportreport40_df.columns])
+```
+
+Please note that the above code assumes that the necessary SparkSession and DataFrame objects have been created and that the necessary libraries have been imported. Also, the code for steps 9 and 10 assumes that the ztall_businessday table has been loaded into a DataFrame. The code for step 18 assumes that the ztob_sportreport40 table has been loaded into a DataFrame.

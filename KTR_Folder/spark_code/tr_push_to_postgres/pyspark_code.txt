@@ -1,0 +1,132 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. get var
+```python
+# No equivalent Spark code as this is a variable retrieval step in Pentaho
+```
+
+2. tablename
+```python
+# No equivalent Spark code as this is a script execution step in Pentaho
+```
+
+3. slct 3
+```python
+# No equivalent Spark code as this is a select values step in Pentaho
+```
+
+4. Table exists
+```python
+# Spark doesn't have a built-in function to check if a table exists. However, you can use the following code:
+spark.sql("SHOW TABLES LIKE 'tablename'").count() > 0
+```
+
+5. tbl_not_exist1
+```python
+# No equivalent Spark code as this is a filter rows step in Pentaho
+```
+
+6. table_exist
+```python
+# No equivalent Spark code as this is a select values step in Pentaho
+```
+
+7. metadata
+```python
+# No equivalent Spark code as this is a table input step in Pentaho
+```
+
+8. data_type_change
+```python
+# No equivalent Spark code as this is a replace string step in Pentaho
+```
+
+9. prepare_qry
+```python
+# No equivalent Spark code as this is a script execution step in Pentaho
+```
+
+10. create_table
+```python
+# Spark SQL to create a table
+spark.sql("CREATE TABLE IF NOT EXISTS tablename (col_list)")
+```
+
+11. block
+```python
+# No equivalent Spark code as this is a block until steps finish step in Pentaho
+```
+
+12. create user
+```python
+# Spark SQL to grant select on a table to a user
+spark.sql("GRANT SELECT ON tablename TO rolename")
+```
+
+13. block 2
+```python
+# No equivalent Spark code as this is a block until steps finish step in Pentaho
+```
+
+14. postgres_cnfg
+```python
+# No equivalent Spark code as this is a table output step in Pentaho
+```
+
+15. schdl_create
+```python
+# No equivalent Spark code as this is an execute SQL script step in Pentaho
+```
+
+16. updt end date
+```python
+# Spark SQL to update a date in a table
+spark.sql("UPDATE tablename SET date_column = current_date WHERE condition")
+```
+
+17. insert
+```python
+# No equivalent Spark code as this is a transformation executor step in Pentaho
+```
+
+18. Select values
+```python
+# No equivalent Spark code as this is a select values step in Pentaho
+```
+
+19. blck
+```python
+# No equivalent Spark code as this is a block until steps finish step in Pentaho
+```
+
+20. slct
+```python
+# No equivalent Spark code as this is a select values step in Pentaho
+```
+
+21. add_table_in_view
+```python
+# No equivalent Spark code as this is a transformation executor step in Pentaho
+```
+
+22. action
+```python
+# No equivalent Spark code as this is a constant step in Pentaho
+```
+
+23. slct 5
+```python
+# No equivalent Spark code as this is a select values step in Pentaho
+```
+
+24. audit log
+```python
+# No equivalent Spark code as this is a transformation executor step in Pentaho
+```
+
+25. Output
+```python
+# No equivalent Spark code as this is a dummy step in Pentaho
+```
+
+Please note that not all Pentaho steps have a direct equivalent in Spark. Some steps may require a combination of Spark operations or may not be applicable in a Spark context.

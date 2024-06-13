@@ -1,0 +1,102 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. gv-get_business_date
+```python
+fr_date = spark.read.format("csv").option("header", "true").load("${fr_date}")
+to_date = spark.read.format("csv").option("header", "true").load("${to_date}")
+```
+
+2. fr-fr_and_to_date
+```python
+fr_date = fr_date.filter(fr_date.isNotNull())
+to_date = to_date.filter(to_date.isNotNull())
+```
+
+3. gsi-yesterday
+```python
+from pyspark.sql.functions import date_sub, current_date
+yesterday = date_sub(current_date(), 1)
+```
+
+4. mjsv-cdc
+```python
+from pyspark.sql.functions import datediff
+from datetime import datetime
+constant = datetime.strptime('1986/05/11 00:00:00.000', '%Y/%m/%d %H:%M:%S.%f')
+cdc = datediff(yesterday, constant) - 5973
+```
+
+5. cal-year month day
+```python
+from pyspark.sql.functions import year, month, dayofmonth
+year = year(yesterday)
+month = month(yesterday)
+day = dayofmonth(yesterday)
+```
+
+6. so-left pad month day
+```python
+month = month.rjust(2, '0')
+day = day.rjust(2, '0')
+```
+
+7. sv-business_date
+```python
+business_date = spark.createDataFrame([(cdc, year, month, day)], ["cdc", "year", "month", "day"])
+```
+
+8. calc-days_diff
+```python
+days_diff = datediff(to_date, fr_date)
+```
+
+9. cr-clone_row
+```python
+clone_row = days_diff
+```
+
+10. calc-business_date
+```python
+from pyspark.sql.functions import expr
+business_date = fr_date.withColumn("business_date", expr("date_add(fr_date, num_field)"))
+```
+
+11. mjsv-cdc_2
+```python
+cdc_2 = datediff(business_date, constant) - 5973
+```
+
+12. cal-year month day 2
+```python
+year_2 = year(business_date)
+month_2 = month(business_date)
+day_2 = dayofmonth(business_date)
+```
+
+13. so-left pad month day 2
+```python
+month_2 = month_2.rjust(2, '0')
+day_2 = day_2.rjust(2, '0')
+```
+
+14. sv-business_date_2
+```python
+business_date_2 = spark.createDataFrame([(cdc_2, year_2, month_2, day_2)], ["cdc", "year", "month", "day"])
+```
+
+15. dmmy-union_all
+```python
+union_all = business_date.union(business_date_2)
+```
+
+16. Write to log 2
+```python
+union_all.show()
+```
+
+17. crtr-to_next_steps
+```python
+# This step is not applicable in Spark as it is used to pass rows to the next steps in Pentaho.
+```
+
+Please note that the above Spark code is a rough translation of the Pentaho steps and may need adjustments based on the actual data and Spark environment.

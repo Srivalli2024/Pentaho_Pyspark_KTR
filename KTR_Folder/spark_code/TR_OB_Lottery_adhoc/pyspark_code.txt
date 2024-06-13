@@ -1,0 +1,164 @@
+Based on the hop order and steps file, the sequence of operations and corresponding Spark code would be:
+
+1. Get Variables
+```python
+fr_date = spark.sql("SELECT value FROM variables WHERE name = 'fr_date'")
+to_date = spark.sql("SELECT value FROM variables WHERE name = 'to_date'")
+```
+
+2. Table input vSapBwLottery
+```python
+vsapbwlottery = spark.sql(f"SELECT * FROM vsapbwlottery WHERE creation_date BETWEEN {fr_date} AND {to_date}")
+```
+
+3. DB lookup ztob_businessday
+```python
+ztob_businessday = spark.sql("SELECT * FROM ztob_businessday")
+vsapbwlottery = vsapbwlottery.join(ztob_businessday, (vsapbwlottery.creation_date <= ztob_businessday.end_time) & (vsapbwlottery.creation_date >= ztob_businessday.start_time), 'left')
+```
+
+4. Replace in string
+```python
+from pyspark.sql.functions import regexp_replace
+vsapbwlottery = vsapbwlottery.withColumn('bet_name', regexp_replace('bet_name', '|', ' '))
+vsapbwlottery = vsapbwlottery.withColumn('picks_1', regexp_replace('picks_1', '|', ' '))
+vsapbwlottery = vsapbwlottery.withColumn('picks_2', regexp_replace('picks_2', '|', ' '))
+vsapbwlottery = vsapbwlottery.withColumn('picks_3', regexp_replace('picks_3', '|', ' '))
+vsapbwlottery = vsapbwlottery.withColumn('picks_4', regexp_replace('picks_4', '|', ' '))
+vsapbwlottery = vsapbwlottery.withColumn('picks_5', regexp_replace('picks_5', '|', ' '))
+```
+
+5. String operations
+```python
+from pyspark.sql.functions import trim
+vsapbwlottery = vsapbwlottery.withColumn('bet_name', trim(vsapbwlottery.bet_name))
+vsapbwlottery = vsapbwlottery.withColumn('picks_1', trim(vsapbwlottery.picks_1))
+vsapbwlottery = vsapbwlottery.withColumn('picks_2', trim(vsapbwlottery.picks_2))
+vsapbwlottery = vsapbwlottery.withColumn('picks_3', trim(vsapbwlottery.picks_3))
+vsapbwlottery = vsapbwlottery.withColumn('picks_4', trim(vsapbwlottery.picks_4))
+vsapbwlottery = vsapbwlottery.withColumn('picks_5', trim(vsapbwlottery.picks_5))
+```
+
+6. Concat Fields picks
+```python
+from pyspark.sql.functions import concat_ws
+vsapbwlottery = vsapbwlottery.withColumn('picks', concat_ws(' ', vsapbwlottery.picks_1, vsapbwlottery.picks_2, vsapbwlottery.picks_3, vsapbwlottery.picks_4, vsapbwlottery.picks_5))
+```
+
+7. Constant sales factor
+```python
+vsapbwlottery = vsapbwlottery.withColumn('c_totosf', 0.968804495)
+vsapbwlottery = vsapbwlottery.withColumn('c_4dbsf', 0.977691588)
+vsapbwlottery = vsapbwlottery.withColumn('c_4dssf', 0.972523364)
+vsapbwlottery = vsapbwlottery.withColumn('c_4dbssf', 0.975107476)
+```
+
+8. Formula
+```python
+from pyspark.sql.functions import when, col
+vsapbwlottery = vsapbwlottery.withColumn('bet_status', when(col('status').isin('A', 'S', 'X'), col('status')).otherwise(col('ob_status')))
+vsapbwlottery = vsapbwlottery.withColumn('product_id', when(col('bet_type').startswith('4'), '009').when(col('bet_type').startswith('L'), '023').otherwise('999'))
+vsapbwlottery = vsapbwlottery.withColumn('sales_amount', when(col('type_stake_1') == 'TOTO', col('c_totosf') * col('total_stake')).when((col('type_stake_1') == '4DBIG') & (col('type_stake_2') == ''), col('c_4dbsf') * col('total_stake')).when((col('type_stake_1') == '') & (col('type_stake_2') == '4DSMALL'), col('c_4dssf') * col('total_stake')).when((col('type_stake_1') == '4DBIG') & (col('type_stake_2') == '4DSMALL'), col('c_4dbssf') * col('total_stake')))
+vsapbwlottery = vsapbwlottery.withColumn('gst_amount', col('total_stake') - col('sales_amount'))
+```
+
+9. User Defined Java Expression
+```python
+vsapbwlottery = vsapbwlottery.withColumn('valid_date', when(col('returns') > 0, col('settled_date')).otherwise(None))
+```
+
+10. Duplicate Date & Time fields
+```python
+vsapbwlottery = vsapbwlottery.withColumn('creation_date_d', col('creation_date'))
+vsapbwlottery = vsapbwlottery.withColumn('creation_date_t', col('creation_date'))
+vsapbwlottery = vsapbwlottery.withColumn('settled_date_d', col('settled_date'))
+vsapbwlottery = vsapbwlottery.withColumn('settled_date_t', col('settled_date'))
+vsapbwlottery = vsapbwlottery.withColumn('draw_date_d', col('draw_date'))
+vsapbwlottery = vsapbwlottery.withColumn('draw_date_t', col('draw_date'))
+vsapbwlottery = vsapbwlottery.withColumn('valid_date_d', col('valid_date'))
+vsapbwlottery = vsapbwlottery.withColumn('valid_date_t', col('valid_date'))
+```
+
+11. Format Date & Time fields
+```python
+from pyspark.sql.functions import date_format
+vsapbwlottery = vsapbwlottery.withColumn('business_day', date_format('business_day', 'yyyyMMdd'))
+vsapbwlottery = vsapbwlottery.withColumn('creation_date_d', date_format('creation_date_d', 'yyyyMMdd'))
+vsapbwlottery = vsapbwlottery.withColumn('creation_date_t', date_format('creation_date_t', 'HH:mm:ss'))
+vsapbwlottery = vsapbwlottery.withColumn('settled_date_d', date_format('settled_date_d', 'yyyyMMdd'))
+vsapbwlottery = vsapbwlottery.withColumn('settled_date_t', date_format('settled_date_t', 'HH:mm:ss'))
+vsapbwlottery = vsapbwlottery.withColumn('draw_date_d', date_format('draw_date_d', 'yyyyMMdd'))
+vsapbwlottery = vsapbwlottery.withColumn('draw_date_t', date_format('draw_date_t', 'HH:mm:ss'))
+vsapbwlottery = vsapbwlottery.withColumn('valid_date_d', date_format('valid_date_d', 'yyyyMMdd'))
+vsapbwlottery = vsapbwlottery.withColumn('valid_date_t', date_format('valid_date_t', 'HH:mm:ss'))
+```
+
+12. If field value is null
+```python
+vsapbwlottery = vsapbwlottery.withColumn('es_syndicate_id', when(col('es_syndicate_id').isNull(), 0).otherwise(col('es_syndicate_id')))
+vsapbwlottery = vsapbwlottery.withColumn('es_syndicate_name', when(col('es_syndicate_name').isNull(), ' ').otherwise(col('es_syndicate_name')))
+vsapbwlottery = vsapbwlottery.withColumn('es_syndicate_parts', when(col('es_syndicate_parts').isNull(), 0).otherwise(col('es_syndicate_parts')))
+```
+
+13. Filter rows for Cancel
+```python
+cancel = vsapbwlottery.filter((col('settled_how') == 'M') & (col('bet_status') == 'X'))
+```
+
+14. Memory Group by Cancel
+```python
+from pyspark.sql.functions import sum as _sum, count as _count
+cancel_grouped = cancel.groupBy('business_day', 'account_no', 'bet_name', 'bet_status', 'channel', 'draw_date_d', 'es_draw_no', 'bet_type', 'auto_pick', 'es_syndicate_parts', 'product_id', 'es_syndicate_id', 'es_syndicate_name').agg(_sum('total_stake').alias('bet_amount'), _sum('bet_stake_1').alias('big_stake_board'), _sum('unit_stake_1').alias('big_stake_unit'), _sum('gst_amount').alias('input_output_gst_amount'), _sum('syndicate_parts').alias('number_of_sold_syndicate_units'), _sum('sales_amount').alias('aggr_sales_amount'), _sum('bet_stake_2').alias('small_stake_board'), _sum('unit_stake_2').alias('small_stake_unit'), _count('*').alias('transaction_count'))
+```
+
+15. Avoid update empty row - Cancel
+```python
+cancel_grouped = cancel_grouped.filter((col('business_day').isNotNull()) & (col('account_no').isNotNull()))
+```
+
+16. Insert/Update ztob_lottery_cancel
+```python
+cancel_grouped.write.mode('overwrite').insertInto('ztob_lottery_cancel')
+```
+
+17. Filter rows for Valid
+```python
+valid = vsapbwlottery.filter((col('bet_status') == 'S') & (col('valid_date_d').isNotNull()) & (col('returns') > 0))
+```
+
+18. Memory Group by Valid
+```python
+valid_grouped = valid.groupBy('business_day', 'account_no', 'bet_name', 'bet_status', 'channel', 'draw_date_d', 'es_draw_no', 'bet_type', 'auto_pick', 'es_syndicate_parts', 'product_id', 'es_syndicate_id', 'es_syndicate_name').agg(_sum('returns').alias('returns'), _sum('winnings').alias('winnings'), _count('*').alias('transaction_count'))
+```
+
+19. Avoid update empty row - Valid
+```python
+valid_grouped = valid_grouped.filter((col('business_day').isNotNull()) & (col('account_no').isNotNull()))
+```
+
+20. Insert/Update ztob_lottery_valid
+```python
+valid_grouped.write.mode('overwrite').insertInto('ztob_lottery_valid')
+```
+
+21. Memory Group by Wager
+```python
+wager_grouped = vsapbwlottery.groupBy('business_day', 'account_no', 'bet_name', 'bet_status', 'channel', 'draw_date_d', 'es_draw_no', 'bet_type', 'auto_pick', 'es_syndicate_parts', 'product_id', 'es_syndicate_id', 'es_syndicate_name').agg(_sum('total_stake').alias('bet_amount'), _sum('bet_stake_1').alias('big_stake_board'), _sum('unit_stake_1').alias('big_stake_unit'), _sum('gst_amount').alias('input_output_gst_amount'), _sum('syndicate_parts').alias('number_of_sold_syndicate_units'), _sum('sales_amount').alias('aggr_sales_amount'), _sum('bet_stake_2').alias('small_stake_board'), _sum('unit_stake_2').alias('small_stake_unit'), _count('*').alias('transaction_count'))
+```
+
+22. Avoid update empty row - Wager
+```python
+wager_grouped = wager_grouped.filter((col('business_day').isNotNull()) & (col('account_no').isNotNull()))
+```
+
+23. Insert/Update ztob_lottery_wager
+```python
+wager_grouped.write.mode('overwrite').insertInto('ztob_lottery_wager')
+```
+
+24. Insert/Update ztob_lottery
+```python
+vsapbwlottery.write.mode('overwrite').insertInto('ztob_lottery')
+```
+
+Please note that the above Spark code is written in PySpark and assumes that the SparkSession is already created and named as `spark`. The code also assumes that the data is stored in a Hive table. If the data is stored in a different type of database, the SQL queries and write methods may need to be adjusted accordingly.

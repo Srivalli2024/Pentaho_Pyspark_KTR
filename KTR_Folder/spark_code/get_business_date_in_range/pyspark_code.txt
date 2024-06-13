@@ -1,0 +1,88 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be:
+
+1. gv-get_business_date
+```python
+from_date = spark.read.format("csv").option("header", "true").load("${from_date}")
+to_date = spark.read.format("csv").option("header", "true").load("${to_date}")
+reference_date = spark.read.format("csv").option("header", "true").load("${reference_date}")
+```
+
+2. mj-merge_data
+```python
+merged_data = from_date.join(to_date, "id", "full_outer").join(reference_date, "id", "full_outer")
+```
+
+3. Calculator 3
+```python
+from pyspark.sql.functions import expr
+merged_data = merged_data.withColumn("EndDate", expr("date_add(TempEndDate, days)"))
+```
+
+4. gsi-get_yesterday
+```python
+from pyspark.sql.functions import date_sub, current_date
+yesterday = date_sub(current_date(), 1)
+```
+
+5. frmla-update_variables
+```python
+from pyspark.sql.functions import when, col
+merged_data = merged_data.withColumn("flag", when((col("FromDate").isNotNull()) | (col("ToDate").isNotNull()), "ad_hoc").otherwise("auto"))
+merged_data = merged_data.withColumn("FromDate", when(col("FromDate").isNull(), when(col("EndDate").isNull(), col("ReferenceDate")).otherwise(col("EndDate"))).otherwise(col("FromDate")))
+merged_data = merged_data.withColumn("ToDate", when(col("ToDate").isNull(), yesterday).otherwise(col("ToDate")))
+```
+
+6. Switch / Case
+```python
+auto_data = merged_data.filter(col("flag") == "auto")
+ad_hoc_data = merged_data.filter(col("flag") == "ad_hoc")
+```
+
+7. Filter rows 2
+```python
+filtered_data = auto_data.filter(col("FromDate") <= col("ToDate"))
+```
+
+8. sv-select_from_to_date
+```python
+selected_data = filtered_data.select("FromDate", "ToDate")
+```
+
+9. Dummy (do nothing)
+```python
+# No action required for this step in Spark
+```
+
+10. Calculator
+```python
+from pyspark.sql.functions import datediff
+selected_data = selected_data.withColumn("period", datediff(col("ToDate"), col("FromDate")))
+```
+
+11. Clone row
+```python
+# No direct equivalent in Spark, but can be achieved using a combination of explode and sequence functions
+```
+
+12. Calculator 2
+```python
+selected_data = selected_data.withColumn("Date", expr("date_add(FromDate, num)"))
+```
+
+13. Merge Join
+```python
+# Assuming gv-parameter step has been executed and resulted in a DataFrame named 'parameters'
+merged_data = selected_data.join(parameters, "id", "left_outer")
+```
+
+14. Select values
+```python
+selected_data = merged_data.select("Date", "username", "password", "proxy_host", "proxy_port")
+```
+
+15. crtr-copy_to_next_step
+```python
+# No action required for this step in Spark
+```
+
+Please note that the actual Spark code might vary depending on the exact data types and structures of your data.

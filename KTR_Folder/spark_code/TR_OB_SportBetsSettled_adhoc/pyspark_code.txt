@@ -1,0 +1,98 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. Get Variables
+```scala
+val fr_date = spark.sqlContext.getConf("spark.fr_date")
+val to_date = spark.sqlContext.getConf("spark.to_date")
+```
+
+2. Table input vSapBwSportBetsSettled
+```scala
+val df = spark.read.format("jdbc")
+  .option("url", "jdbc:postgresql://localhost:5432/OpenBet Sports")
+  .option("dbtable", "(SELECT * FROM vsapbwsportbetssettled WHERE creation_date BETWEEN " + fr_date + " AND " + to_date + ") as tmp")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
+```
+
+3. DB lookup ztob_businessday
+```scala
+val businessDayDF = spark.read.format("jdbc")
+  .option("url", "jdbc:postgresql://localhost:5432/ABCDs Qlik Postgres")
+  .option("dbtable", "ztob_businessday")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
+
+val dfWithBusinessDay = df.join(businessDayDF, df("start_time") <= businessDayDF("creation_date") && df("end_time") >= businessDayDF("creation_date"))
+```
+
+4. Replace in string
+```scala
+val dfReplaced = dfWithBusinessDay.withColumn("market_name_1", regexp_replace($"market_name_1", "\\|", " "))
+  .withColumn("market_name_2", regexp_replace($"market_name_2", "\\|", " "))
+  .withColumn("selection_name_1", regexp_replace($"selection_name_1", "\\|", " "))
+  .withColumn("selection_name_2", regexp_replace($"selection_name_2", "\\|", " "))
+```
+
+5. String operations
+```scala
+val dfTrimmed = dfReplaced.withColumn("market_name_1", trim($"market_name_1"))
+  .withColumn("market_name_2", trim($"market_name_2"))
+  .withColumn("selection_name_1", trim($"selection_name_1"))
+  .withColumn("selection_name_2", trim($"selection_name_2"))
+  .withColumn("bet_type", trim($"bet_type"))
+  .withColumn("last_settled_info_1", trim($"last_settled_info_1"))
+  .withColumn("last_settled_info_2", trim($"last_settled_info_2"))
+  .withColumn("last_settled_info_3", trim($"last_settled_info_3"))
+  .withColumn("last_settled_info_4", trim($"last_settled_info_4"))
+```
+
+6. Concat Fields market_name
+```scala
+val dfConcatMarketName = dfTrimmed.withColumn("market_name", concat($"market_name_1", lit(" "), $"market_name_2"))
+```
+
+7. Concat Fields selection_name
+```scala
+val dfConcatSelectionName = dfConcatMarketName.withColumn("selection_name", concat($"selection_name_1", lit(" "), $"selection_name_2"))
+```
+
+8. Concat Fields last_settled_info
+```scala
+val dfConcatLastSettledInfo = dfConcatSelectionName.withColumn("last_settled_info", concat($"last_settled_info_1", lit(" "), $"last_settled_info_2", lit(" "), $"last_settled_info_3", lit(" "), $"last_settled_info_4"))
+```
+
+9. Formula
+```scala
+val dfWithMultipleBet = dfConcatLastSettledInfo.withColumn("multiple_bet", when($"bet_type" === "SGL", "N").otherwise("Y"))
+```
+
+10. User Defined Java Expression
+```scala
+val dfWithSettledFlag = dfWithMultipleBet.withColumn("settled_flag", when($"last_settled_date".isNull, "N").otherwise("Y"))
+```
+
+11. Duplicate Date & Time fields
+```scala
+val dfWithDuplicateFields = dfWithSettledFlag.withColumn("creation_date_d", $"creation_date")
+  .withColumn("creation_date_t", $"creation_date")
+  .withColumn("last_settled_date_d", $"last_settled_date")
+  .withColumn("last_settled_date_t", $"last_settled_date")
+  .withColumn("validation_date_d", $"validation_date")
+  .withColumn("validation_date_t", $"validation_date")
+```
+
+12. Format Date & Time fields
+```scala
+val dfFormatted = dfWithDuplicateFields.withColumn("business_day", date_format($"business_day", "yyyyMMdd"))
+  .withColumn("creation_date_d", date_format($"creation_date_d", "yyyyMMdd"))
+  .withColumn("creation_date_t", date_format($"creation_date_t", "HH:mm:ss"))
+  .withColumn("last_settled_date_d", date_format($"last_settled_date_d", "yyyyMMdd"))
+  .withColumn("last_settled_date_t", date_format($"last_settled_date_t", "HH:mm:ss"))
+  .withColumn("validation_date_d", date_format($"validation_date_d", "yyyyMMdd"))
+  .withColumn("validation_date_t", date_format($"validation_date_t", "HH:mm:ss"))
+```
+
+The remaining steps involve filtering rows and updating/inserting into different tables which would be specific to your database and would require using a combination of DataFrame transformations (filter, groupBy, agg) and database-specific operations (JDBC writes, upserts).

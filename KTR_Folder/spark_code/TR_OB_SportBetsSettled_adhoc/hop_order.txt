@@ -1,0 +1,133 @@
+<order>
+    <hop>
+      <from>Table input vSapBwSportBetsSettled</from>
+      <to>DB lookup ztob_businessday</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB lookup ztob_businessday</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Concat Fields market_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields market_name</from>
+      <to>Concat Fields selection_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields selection_name</from>
+      <to>Concat Fields last_settled_info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>Insert/Update ztob_sportbetssettled</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields last_settled_info</from>
+      <to>Formula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Duplicate Date &amp; Time fields</from>
+      <to>Format Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formula</from>
+      <to>User Defined Java Expression</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>User Defined Java Expression</from>
+      <to>Duplicate Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Liability</from>
+      <to>Memory Group by Liability</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Cancel</from>
+      <to>Memory Group by Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Valid</from>
+      <to>Memory Group by Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Cancel</from>
+      <to>Avoid update empty row - Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Cancel</from>
+      <to>Insert/Update ztob_sportbetssettled_cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Valid</from>
+      <to>Avoid update empty row - Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Valid</from>
+      <to>Insert/Update ztob_sportbetssettled_valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Liability</from>
+      <to>Avoid update empty row - Liability</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Liability</from>
+      <to>Insert/Update ztob_sportbetssettled_liability</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>DB lookup ztob_timetable</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB lookup ztob_timetable</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Liability</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Table input vSapBwSportBetsSettled</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

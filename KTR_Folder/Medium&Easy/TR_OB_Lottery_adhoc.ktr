@@ -1,0 +1,4177 @@
+<transformation>
+  <info>
+    <name>TR_OB_Lottery_adhoc</name>
+    <description>TR_OB_Lottery_adhoc</description>
+    <extended_description />
+    <trans_version />
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/ABCD/OpenBet</directory>
+    <parameters>
+      <parameter>
+        <name>fr_date</name>
+        <default_value />
+        <description>YYYY-MM-DD HH:MM:SS.000</description>
+      </parameter>
+      <parameter>
+        <name>to_date</name>
+        <default_value />
+        <description>YYYY-MM-DD HH:MM:SS.000</description>
+      </parameter>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject />
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection />
+      <table />
+      <field />
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file />
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+      <partitionschema>
+        <name>cluster</name>
+        <dynamic>N</dynamic>
+        <partitions_per_slave />
+      </partitionschema>
+      <partitionschema>
+        <name>dynamic</name>
+        <dynamic>Y</dynamic>
+        <partitions_per_slave>1</partitions_per_slave>
+      </partitionschema>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>ATI-PRD-ANA03</name>
+        <hostname>ATI-PRD-ANA03</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>ATI-STG-ANA03</name>
+        <hostname>ATI-STG-ANA03</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Cloud_Server</name>
+        <hostname>12.345.678.900</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server 5.0</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>master</name>
+        <hostname>112.345.678.903</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master Kettle</name>
+        <hostname>${IP_ADDR}</hostname>
+        <port>1234</port>
+        <webAppName>pentaho</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>PDI on VM</name>
+        <hostname>112.345.678.900</hostname>
+        <port />
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>PDI_win7</name>
+        <hostname>112.345.678.900</hostname>
+        <port />
+        <webAppName>pdi_win7</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave Carte</name>
+        <hostname>${IP_ADDR}</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave4</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave5</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>YarnCluster - dn1:12345</name>
+        <hostname>dn1</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>YarnCluster - dn3:12345</name>
+        <hostname>dn3</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>YarnCluster - sandbox.hortonworks.com:12345</name>
+        <hostname>sandbox.hortonworks.com</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>YarnCluster - sandbox.hortonworks.com:12345</name>
+        <hostname>sandbox.hortonworks.com</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>YarnCluster - sandbox.hortonworks.com:12345</name>
+        <hostname>sandbox.hortonworks.com</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>ati-dev-ana01</name>
+        <hostname>ati-dev-ana01</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>bmcPentaho</name>
+        <hostname>12.345.678.90</hostname>
+        <port>1234</port>
+        <webAppName>pentaho</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>carte_local</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>kettle</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>cptlx007</name>
+        <hostname>cptlx007.cipal.be</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>di-server</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local</name>
+        <hostname>123.4.5.6</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local carte</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>spoon</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-centos</name>
+        <hostname>112.345.678.901</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master1</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master10</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master2</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master3</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master4</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master5</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master6</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master7</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master8</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi-master9</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi_server10</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pdi_win10</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>pudx</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>pentaho</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>remote</name>
+        <hostname>112.345.678.90</hostname>
+        <port>1234</port>
+        <webAppName>pentaho-di/kettle</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>slave</name>
+        <hostname>112.345.678.903</hostname>
+        <port />
+        <webAppName />
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>webspoon</name>
+        <hostname>localhost</hostname>
+        <port>1234</port>
+        <webAppName>spoon</webAppName>
+        <username>sys_user</username>
+        <password>Encrypted abcdefjkl123456</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema_dynamic</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>Y</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>YarnCluster</name>
+        <base_port>4000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>N</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>joe</created_user>
+    <created_date>2017/08/24 10:33:44.696</created_date>
+    <modified_user>joe</modified_user>
+    <modified_date>2018/08/17 16:45:04.635</modified_date>
+    <key_for_session_key />
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Get variables from 
+transformation</note>
+      <xloc>144</xloc>
+      <yloc>48</yloc>
+      <width>137</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Get data from
+OB DB view</note>
+      <xloc>384</xloc>
+      <yloc>48</yloc>
+      <width>103</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Lookup for Business 
+Day from Postgre DB</note>
+      <xloc>576</xloc>
+      <yloc>48</yloc>
+      <width>149</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Remove special
+characters</note>
+      <xloc>816</xloc>
+      <yloc>48</yloc>
+      <width>114</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Remove extra 
+space characters</note>
+      <xloc>816</xloc>
+      <yloc>192</yloc>
+      <width>120</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Concatenate
+fields</note>
+      <xloc>608</xloc>
+      <yloc>192</yloc>
+      <width>93</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Define constant
+values</note>
+      <xloc>368</xloc>
+      <yloc>192</yloc>
+      <width>115</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Formula to 
+calculate fields</note>
+      <xloc>144</xloc>
+      <yloc>192</yloc>
+      <width>110</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Script to 
+calculate fields</note>
+      <xloc>144</xloc>
+      <yloc>336</yloc>
+      <width>110</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Duplicate Timestamp
+fields</note>
+      <xloc>368</xloc>
+      <yloc>336</yloc>
+      <width>152</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Format the Date &amp; Time fields</note>
+      <xloc>336</xloc>
+      <yloc>480</yloc>
+      <width>212</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Output update into PostgreSQL DB</note>
+      <xloc>608</xloc>
+      <yloc>480</yloc>
+      <width>240</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Replace fields value if null</note>
+      <xloc>352</xloc>
+      <yloc>608</yloc>
+      <width>183</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Filter rows for Cancel</note>
+      <xloc>368</xloc>
+      <yloc>736</yloc>
+      <width>149</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Filter rows for Valid</note>
+      <xloc>608</xloc>
+      <yloc>736</yloc>
+      <width>138</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Aggregations for Wager, 
+Cancel &amp; Valid</note>
+      <xloc>800</xloc>
+      <yloc>848</yloc>
+      <width>178</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>To avoid update empty rows</note>
+      <xloc>800</xloc>
+      <yloc>944</yloc>
+      <width>200</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Output update into PostgreSQL DB</note>
+      <xloc>800</xloc>
+      <yloc>1024</yloc>
+      <width>240</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>OpenBet Lottery</name>
+    <server>12.345.678.905</server>
+    <type>INFORMIX</type>
+    <access>Native</access>
+    <database>lottery</database>
+    <port>1234</port>
+    <username>sys_user</username>
+    <password>Encrypted abcdefjkl123456</password>
+    <servername>pri_app</servername>
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1924</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>ABCDs Qlik Postgres</name>
+    <server>12.345.678.900</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>postgres</database>
+    <port>1234</port>
+    <username>sys_user</username>
+    <password>Encrypted abcdefjkl123456</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>9999</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Duplicate Date &amp; Time fields</from>
+      <to>Format Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant sales factor</from>
+      <to>Formula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formula</from>
+      <to>User Defined Java Expression</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>Insert/Update ztob_lottery</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields picks</from>
+      <to>Constant sales factor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Cancel</from>
+      <to>Memory Group by Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB lookup ztob_businessday</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Concat Fields picks</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input vSapBwLottery</from>
+      <to>DB lookup ztob_businessday</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>User Defined Java Expression</from>
+      <to>Duplicate Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Memory Group by Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Valid</from>
+      <to>Memory Group by Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Valid</from>
+      <to>Avoid update empty row - Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Valid</from>
+      <to>Insert/Update ztob_lottery_valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Cancel</from>
+      <to>Avoid update empty row - Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Cancel</from>
+      <to>Insert/Update ztob_lottery_cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Wager</from>
+      <to>Avoid update empty row - Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Wager</from>
+      <to>Insert/Update ztob_lottery_wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Table input vSapBwLottery</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Avoid update empty row - Cancel</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Insert/Update ztob_lottery_cancel</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>business_day</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>account_no</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Avoid update empty row - Valid</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Insert/Update ztob_lottery_valid</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>business_day</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>account_no</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Avoid update empty row - Wager</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Insert/Update ztob_lottery_wager</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>business_day</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>account_no</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Concat Fields picks</name>
+    <type>ConcatFields</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator />
+    <enclosure />
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding />
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>file</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>picks_1</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>picks_2</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>picks_3</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>picks_4</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>picks_5</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>picks</targetFieldName>
+      <targetFieldLength>255</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant sales factor</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>c_totosf</name>
+        <type>BigNumber</type>
+        <format />
+        <currency />
+        <decimal>9</decimal>
+        <group />
+        <nullif>0.968804495</nullif>
+        <length>11</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>c_4dbsf</name>
+        <type>BigNumber</type>
+        <format />
+        <currency />
+        <decimal>9</decimal>
+        <group />
+        <nullif>0.977691588</nullif>
+        <length>11</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>c_4dssf</name>
+        <type>BigNumber</type>
+        <format />
+        <currency />
+        <decimal>9</decimal>
+        <group />
+        <nullif>0.972523364</nullif>
+        <length>11</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>c_4dbssf</name>
+        <type>BigNumber</type>
+        <format />
+        <currency />
+        <decimal>9</decimal>
+        <group />
+        <nullif>0.975107476</nullif>
+        <length>11</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DB lookup ztob_businessday</name>
+    <type>DBLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ABCDs Qlik Postgres</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema />
+      <table>ztob_businessday</table>
+      <orderby />
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>creation_date</name>
+        <field>start_time</field>
+        <condition>&lt;=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>creation_date</name>
+        <field>end_time</field>
+        <condition>&gt;=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>start_time</name>
+        <rename>business_day</rename>
+        <default />
+        <type>Timestamp</type>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Duplicate Date &amp; Time fields</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>creation_date_d</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>creation_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>creation_date_t</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>creation_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>settled_date_d</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>settled_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>settled_date_t</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>settled_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>draw_date_d</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>draw_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>draw_date_t</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>draw_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>valid_date_d</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>valid_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>valid_date_t</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>valid_date</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows for Cancel</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Memory Group by Cancel</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>settled_how</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>M</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>bet_status</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>X</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows for Valid</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Memory Group by Valid</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>bet_status</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>S</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>valid_date_d</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>returns</leftvalue>
+            <function>&gt;</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Number</type>
+              <text>0.0</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask>####0.0#########;-####0.0#########</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Format Date &amp; Time fields</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>business_day</name>
+        <rename>business_day</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>creation_date_d</name>
+        <rename>creation_date_d</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>creation_date_t</name>
+        <rename>creation_date_t</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>settled_date_d</name>
+        <rename>settled_date_d</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>settled_date_t</name>
+        <rename>settled_date_t</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>draw_date_d</name>
+        <rename>draw_date_d</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>draw_date_t</name>
+        <rename>draw_date_t</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>valid_date_d</name>
+        <rename>valid_date_d</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>valid_date_t</name>
+        <rename>valid_date_t</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Formula</name>
+    <type>Formula</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <formula>
+      <field_name>bet_status</field_name>
+      <formula_string>IF(OR([status]="A";[status]="S";[status]="X");[status];[ob_status])</formula_string>
+      <value_type>String</value_type>
+      <value_length>1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field />
+    </formula>
+    <formula>
+      <field_name>product_id</field_name>
+      <formula_string>IF(LEFT([bet_type];1) = "4"; "009";IF(LEFT( [bet_type];1) = "L"; "023"; "999"))</formula_string>
+      <value_type>String</value_type>
+      <value_length>3</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field />
+    </formula>
+    <formula>
+      <field_name>sales_amount</field_name>
+      <formula_string>IF(([type_stake_1]="TOTO");[c_totosf]*[total_stake];
+IF((AND([type_stake_1]="4DBIG";[type_stake_2]=""));[c_4dbsf]*[total_stake];
+IF((AND([type_stake_1]="";[type_stake_2]="4DSMALL"));[c_4dssf]*[total_stake]; 
+IF((AND([type_stake_1]="4DBIG";[type_stake_2]="4DSMALL"));[c_4dbssf]*[total_stake]))))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>12</value_length>
+      <value_precision>2</value_precision>
+      <replace_field />
+    </formula>
+    <formula>
+      <field_name>gst_amount</field_name>
+      <formula_string>[total_stake] - [sales_amount]</formula_string>
+      <value_type>Number</value_type>
+      <value_length>12</value_length>
+      <value_precision>2</value_precision>
+      <replace_field />
+    </formula>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>fr_date</name>
+        <variable>${fr_date}</variable>
+        <type>Timestamp</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>to_date</name>
+        <variable>${to_date}</variable>
+        <type>Timestamp</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <replaceAllByValue />
+    <replaceAllMask />
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>es_syndicate_id</name>
+        <value>0</value>
+        <mask />
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>es_syndicate_name</name>
+        <value> </value>
+        <mask />
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>es_syndicate_parts</name>
+        <value>0</value>
+        <mask />
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert/Update ztob_lottery</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ABCDs Qlik Postgres</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>ztob_lottery</table>
+      <key>
+        <name>bet_id</name>
+        <field>bet_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>creation_date_d</name>
+        <field>creation_date_d</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>creation_date_t</name>
+        <field>creation_date_t</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>bet_id</name>
+        <rename>bet_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>creation_date_d</name>
+        <rename>creation_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>creation_date_t</name>
+        <rename>creation_date_t</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>account_no</name>
+        <rename>account_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ccy_code</name>
+        <rename>ccy_code</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>betslip_id</name>
+        <rename>betslip_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_type</name>
+        <rename>bet_type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_name</name>
+        <rename>bet_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>channel</name>
+        <rename>channel</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>status</name>
+        <rename>status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ob_status</name>
+        <rename>ob_status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>settled_how</name>
+        <rename>settled_how</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ob_draw_id</name>
+        <rename>ob_draw_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_draw_no</name>
+        <rename>es_draw_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>auto_pick</name>
+        <rename>auto_pick</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>total_stake</name>
+        <rename>total_stake</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>type_stake_1</name>
+        <rename>type_stake_1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>type_stake_2</name>
+        <rename>type_stake_2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>unit_stake_1</name>
+        <rename>unit_stake_1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>unit_stake_2</name>
+        <rename>unit_stake_2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_stake_1</name>
+        <rename>bet_stake_1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_stake_2</name>
+        <rename>bet_stake_2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>returns</name>
+        <rename>returns</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>winnings</name>
+        <rename>winnings</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>sales</name>
+        <rename>sales</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_id</name>
+        <rename>es_syndicate_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_name</name>
+        <rename>es_syndicate_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_parts</name>
+        <rename>es_syndicate_parts</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>syndicate_parts</name>
+        <rename>syndicate_parts</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>last_updated_date</name>
+        <rename>last_updated_date</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>business_day</name>
+        <rename>business_day</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>picks</name>
+        <rename>picks</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_status</name>
+        <rename>bet_status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>product_id</name>
+        <rename>product_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>sales_amount</name>
+        <rename>sales_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>gst_amount</name>
+        <rename>gst_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>settled_date_d</name>
+        <rename>settled_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>settled_date_t</name>
+        <rename>settled_date_t</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>draw_date_d</name>
+        <rename>draw_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>draw_date_t</name>
+        <rename>draw_date_t</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>valid_date_d</name>
+        <rename>valid_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>valid_date_t</name>
+        <rename>valid_date_t</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert/Update ztob_lottery_cancel</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ABCDs Qlik Postgres</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>ztob_lottery_cancel</table>
+      <key>
+        <name>business_day</name>
+        <field>business_day</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>account_no</name>
+        <field>account_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_name</name>
+        <field>bet_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_status</name>
+        <field>bet_status</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>channel</name>
+        <field>channel</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>draw_date_d</name>
+        <field>draw_date_d</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_draw_no</name>
+        <field>es_draw_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_type</name>
+        <field>bet_type</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>auto_pick</name>
+        <field>auto_pick</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_parts</name>
+        <field>es_syndicate_parts</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>product_id</name>
+        <field>product_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_id</name>
+        <field>es_syndicate_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_name</name>
+        <field>es_syndicate_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>business_day</name>
+        <rename>business_day</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>account_no</name>
+        <rename>account_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_name</name>
+        <rename>bet_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_status</name>
+        <rename>bet_status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>channel</name>
+        <rename>channel</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>draw_date_d</name>
+        <rename>draw_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_draw_no</name>
+        <rename>es_draw_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_type</name>
+        <rename>bet_type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>auto_pick</name>
+        <rename>auto_pick</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_parts</name>
+        <rename>es_syndicate_parts</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>product_id</name>
+        <rename>product_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_id</name>
+        <rename>es_syndicate_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_name</name>
+        <rename>es_syndicate_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_amount</name>
+        <rename>bet_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>big_stake_board</name>
+        <rename>big_stake_board</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>big_stake_unit</name>
+        <rename>big_stake_unit</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>input_output_gst_amount</name>
+        <rename>input_output_gst_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>number_of_sold_syndicate_units</name>
+        <rename>number_of_sold_syndicate_units</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>aggr_sales_amount</name>
+        <rename>aggr_sales_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>small_stake_board</name>
+        <rename>small_stake_board</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>small_stake_unit</name>
+        <rename>small_stake_unit</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>transaction_count</name>
+        <rename>transaction_count</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert/Update ztob_lottery_valid</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ABCDs Qlik Postgres</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>ztob_lottery_valid</table>
+      <key>
+        <name>business_day</name>
+        <field>business_day</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>account_no</name>
+        <field>account_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_name</name>
+        <field>bet_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_status</name>
+        <field>bet_status</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>channel</name>
+        <field>channel</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>draw_date_d</name>
+        <field>draw_date_d</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_draw_no</name>
+        <field>es_draw_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_type</name>
+        <field>bet_type</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>auto_pick</name>
+        <field>auto_pick</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_parts</name>
+        <field>es_syndicate_parts</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>product_id</name>
+        <field>product_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_id</name>
+        <field>es_syndicate_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_name</name>
+        <field>es_syndicate_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>business_day</name>
+        <rename>business_day</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>account_no</name>
+        <rename>account_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_name</name>
+        <rename>bet_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_status</name>
+        <rename>bet_status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>channel</name>
+        <rename>channel</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>draw_date_d</name>
+        <rename>draw_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_draw_no</name>
+        <rename>es_draw_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_type</name>
+        <rename>bet_type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>auto_pick</name>
+        <rename>auto_pick</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_parts</name>
+        <rename>es_syndicate_parts</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>product_id</name>
+        <rename>product_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_id</name>
+        <rename>es_syndicate_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_name</name>
+        <rename>es_syndicate_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>returns</name>
+        <rename>returns</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>winnings</name>
+        <rename>winnings</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>transaction_count</name>
+        <rename>transaction_count</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert/Update ztob_lottery_wager</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ABCDs Qlik Postgres</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>ztob_lottery_wager</table>
+      <key>
+        <name>business_day</name>
+        <field>business_day</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>account_no</name>
+        <field>account_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_name</name>
+        <field>bet_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_status</name>
+        <field>bet_status</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>channel</name>
+        <field>channel</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>draw_date_d</name>
+        <field>draw_date_d</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_draw_no</name>
+        <field>es_draw_no</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>bet_type</name>
+        <field>bet_type</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>auto_pick</name>
+        <field>auto_pick</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_parts</name>
+        <field>es_syndicate_parts</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>product_id</name>
+        <field>product_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_id</name>
+        <field>es_syndicate_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>es_syndicate_name</name>
+        <field>es_syndicate_name</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>business_day</name>
+        <rename>business_day</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>account_no</name>
+        <rename>account_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_name</name>
+        <rename>bet_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_status</name>
+        <rename>bet_status</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>channel</name>
+        <rename>channel</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>draw_date_d</name>
+        <rename>draw_date_d</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_draw_no</name>
+        <rename>es_draw_no</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_type</name>
+        <rename>bet_type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>auto_pick</name>
+        <rename>auto_pick</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_parts</name>
+        <rename>es_syndicate_parts</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>product_id</name>
+        <rename>product_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_id</name>
+        <rename>es_syndicate_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>es_syndicate_name</name>
+        <rename>es_syndicate_name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bet_amount</name>
+        <rename>bet_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>big_stake_board</name>
+        <rename>big_stake_board</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>big_stake_unit</name>
+        <rename>big_stake_unit</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>input_output_gst_amount</name>
+        <rename>input_output_gst_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>number_of_sold_syndicate_units</name>
+        <rename>number_of_sold_syndicate_units</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>aggr_sales_amount</name>
+        <rename>aggr_sales_amount</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>small_stake_board</name>
+        <rename>small_stake_board</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>small_stake_unit</name>
+        <rename>small_stake_unit</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>transaction_count</name>
+        <rename>transaction_count</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory Group by Cancel</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>business_day</name>
+      </field>
+      <field>
+        <name>account_no</name>
+      </field>
+      <field>
+        <name>bet_name</name>
+      </field>
+      <field>
+        <name>bet_status</name>
+      </field>
+      <field>
+        <name>channel</name>
+      </field>
+      <field>
+        <name>draw_date_d</name>
+      </field>
+      <field>
+        <name>es_draw_no</name>
+      </field>
+      <field>
+        <name>bet_type</name>
+      </field>
+      <field>
+        <name>auto_pick</name>
+      </field>
+      <field>
+        <name>es_syndicate_parts</name>
+      </field>
+      <field>
+        <name>product_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_name</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>bet_amount</aggregate>
+        <subject>total_stake</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>big_stake_board</aggregate>
+        <subject>bet_stake_1</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>big_stake_unit</aggregate>
+        <subject>unit_stake_1</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>input_output_gst_amount</aggregate>
+        <subject>gst_amount</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>number_of_sold_syndicate_units</aggregate>
+        <subject>syndicate_parts</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>aggr_sales_amount</aggregate>
+        <subject>sales_amount</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>small_stake_board</aggregate>
+        <subject>bet_stake_2</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>small_stake_unit</aggregate>
+        <subject>unit_stake_2</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>transaction_count</aggregate>
+        <subject />
+        <type>COUNT_ANY</type>
+        <valuefield />
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory Group by Valid</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>business_day</name>
+      </field>
+      <field>
+        <name>account_no</name>
+      </field>
+      <field>
+        <name>bet_name</name>
+      </field>
+      <field>
+        <name>bet_status</name>
+      </field>
+      <field>
+        <name>channel</name>
+      </field>
+      <field>
+        <name>draw_date_d</name>
+      </field>
+      <field>
+        <name>es_draw_no</name>
+      </field>
+      <field>
+        <name>bet_type</name>
+      </field>
+      <field>
+        <name>auto_pick</name>
+      </field>
+      <field>
+        <name>es_syndicate_parts</name>
+      </field>
+      <field>
+        <name>product_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_name</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>returns</aggregate>
+        <subject>returns</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>winnings</aggregate>
+        <subject>winnings</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>transaction_count</aggregate>
+        <subject />
+        <type>COUNT_ANY</type>
+        <valuefield />
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory Group by Wager</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>business_day</name>
+      </field>
+      <field>
+        <name>account_no</name>
+      </field>
+      <field>
+        <name>bet_name</name>
+      </field>
+      <field>
+        <name>bet_status</name>
+      </field>
+      <field>
+        <name>channel</name>
+      </field>
+      <field>
+        <name>draw_date_d</name>
+      </field>
+      <field>
+        <name>es_draw_no</name>
+      </field>
+      <field>
+        <name>bet_type</name>
+      </field>
+      <field>
+        <name>auto_pick</name>
+      </field>
+      <field>
+        <name>es_syndicate_parts</name>
+      </field>
+      <field>
+        <name>product_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_id</name>
+      </field>
+      <field>
+        <name>es_syndicate_name</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>bet_amount</aggregate>
+        <subject>total_stake</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>big_stake_board</aggregate>
+        <subject>bet_stake_1</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>big_stake_unit</aggregate>
+        <subject>unit_stake_1</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>input_output_gst_amount</aggregate>
+        <subject>gst_amount</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>number_of_sold_syndicate_units</aggregate>
+        <subject>syndicate_parts</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>aggr_sales_amount</aggregate>
+        <subject>sales_amount</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>small_stake_board</aggregate>
+        <subject>bet_stake_2</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>small_stake_unit</aggregate>
+        <subject>unit_stake_2</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>transaction_count</aggregate>
+        <subject />
+        <type>COUNT_ANY</type>
+        <valuefield />
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>bet_name</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>bet_name</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>_</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>picks_1</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>picks_2</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>picks_3</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>picks_4</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>picks_5</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>|</replace_string>
+        <replace_by_string> </replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations</name>
+    <type>StringOperations</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>bet_name</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>picks_1</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>picks_2</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>picks_3</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>picks_4</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>picks_5</in_stream_name>
+        <out_stream_name />
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input vSapBwLottery</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>OpenBet Lottery</connection>
+    <sql>SELECT * FROM vsapbwlottery 
+WHERE creation_date BETWEEN ? AND ? ;</sql>
+    <limit>0</limit>
+    <lookup>Get Variables</lookup>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>User Defined Java Expression</name>
+    <type>Janino</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <formula>
+      <field_name>valid_date</field_name>
+      <formula_string>returns>0? settled_date : null</formula_string>
+      <value_type>Timestamp</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field />
+    </formula>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+    </group>
+  </attributes>
+</transformation>

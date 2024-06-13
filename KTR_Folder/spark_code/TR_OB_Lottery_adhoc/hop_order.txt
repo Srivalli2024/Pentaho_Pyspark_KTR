@@ -1,0 +1,118 @@
+<order>
+    <hop>
+      <from>Duplicate Date &amp; Time fields</from>
+      <to>Format Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant sales factor</from>
+      <to>Formula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formula</from>
+      <to>User Defined Java Expression</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>Insert/Update ztob_lottery</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields picks</from>
+      <to>Constant sales factor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Cancel</from>
+      <to>Memory Group by Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB lookup ztob_businessday</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Concat Fields picks</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input vSapBwLottery</from>
+      <to>DB lookup ztob_businessday</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>User Defined Java Expression</from>
+      <to>Duplicate Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Memory Group by Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Filter rows for Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows for Valid</from>
+      <to>Memory Group by Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Valid</from>
+      <to>Avoid update empty row - Valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Valid</from>
+      <to>Insert/Update ztob_lottery_valid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Cancel</from>
+      <to>Avoid update empty row - Cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Cancel</from>
+      <to>Insert/Update ztob_lottery_cancel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by Wager</from>
+      <to>Avoid update empty row - Wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Avoid update empty row - Wager</from>
+      <to>Insert/Update ztob_lottery_wager</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Table input vSapBwLottery</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

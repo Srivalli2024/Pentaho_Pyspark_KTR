@@ -1,0 +1,55 @@
+Based on the hop order and the steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. Get Variables
+```scala
+val pviewsave = spark.sqlContext.getConf("pviewsave")
+val pviewuser = spark.sqlContext.getConf("pviewuser")
+val pviewrole = spark.sqlContext.getConf("pviewrole")
+```
+
+2. Filter rows
+```scala
+val filteredDF = df.filter(col("pagelistt").contains(","))
+```
+
+3. DView
+```scala
+val splitDF = filteredDF.withColumn("pagelist", explode(split(col("pagelistt"), ",")))
+```
+
+4. Dselect
+```scala
+val selectedDF = splitDF.select("pagelist", "portaluser", "pviewrole", col("pviewrole").as("pviewrole_1"))
+```
+
+5. delete priviliges
+```scala
+spark.sql("delete from dim_viewprivilige where view_id in (select view_id from dim_view where business_name = ? and category_id<>6) and user_id in(select a.user_id from dim_user a join dim_viewprivilige b on a.user_id=b.user_id where status=1) and role_id in (select role_id from dim_role where (role_name = ? or 'ALL'=?) and role_name<>'dh_superadmin' and status=1)")
+```
+
+6. block
+```scala
+// This step is not applicable in Spark as it is used for synchronization in Pentaho
+```
+
+7. user
+```scala
+val userDF = df.withColumn("portaluser", explode(split(col("portaluser"), ",")))
+```
+
+8. View
+```scala
+val viewDF = userDF.withColumn("pagelist", explode(split(col("pagelistt"), ",")))
+```
+
+9. Iselect
+```scala
+val finalDF = viewDF.select("pagelist", "portaluser_1")
+```
+
+10. Output
+```scala
+finalDF.write.format("jdbc").option("url", "jdbc:postgresql:dbserver").option("dbtable", "schema.tablename").option("user", "username").option("password", "password").save()
+```
+
+Please note that the actual Spark code might vary depending on the exact data types and structures of your dataframes and the specific configurations of your Spark and database environments.

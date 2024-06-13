@@ -1,0 +1,32 @@
+Based on the hop order and the steps file, the sequence of steps is as follows:
+
+1. Get Variables
+2. user
+3. View
+4. Iselect
+5. Output
+
+Now, let's convert these steps into Spark code:
+
+```python
+# Step 1: Get Variables
+pviewsave = spark.read.format("csv").option("header", "true").load("${pviewsave}")
+pviewuser = spark.read.format("csv").option("header", "true").load("${pviewuser}")
+pviewrole = spark.read.format("csv").option("header", "true").load("${pviewrole}")
+
+# Step 2: user
+user = pviewuser.withColumn("portaluser", F.split(F.col("portaluser"), ","))
+
+# Step 3: View
+view = pviewsave.withColumn("pagelist", F.split(F.col("pagelistt"), ","))
+
+# Step 4: Iselect
+iselect = view.select("pagelist", "portaluser_1")
+
+# Step 5: Output
+output = iselect.write.format("jdbc").option("url", "jdbc:postgresql:ABCD").option("dbtable", "dim_viewprivilige").option("user", "username").option("password", "password").save()
+```
+
+Please replace `"username"` and `"password"` with your actual database username and password. Also, replace `"jdbc:postgresql:ABCD"` with your actual JDBC URL.
+
+Please note that this is a simplified conversion and may not cover all the functionalities of the original Pentaho code. For example, the SQL query in the Output step is not converted because Spark does not support executing SQL queries directly on external databases. You may need to use a JDBC connection for that, or convert the SQL logic into Spark transformations.

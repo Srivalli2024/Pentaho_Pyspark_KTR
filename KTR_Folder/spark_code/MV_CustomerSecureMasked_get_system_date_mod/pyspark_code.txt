@@ -1,0 +1,74 @@
+Based on the hop order and steps file, the sequence of steps and their corresponding Spark code would be as follows:
+
+1. Business Date 2
+```python
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.parquet("maprfs://${ABCD_MAPR_HDFS_COMMON}/ztall_businessday/data/ztall_businessday.parquet")
+```
+
+2. Filter rows 1
+```python
+df = df.filter(df.system == 'OB')
+```
+
+3. Select timestamp
+```python
+from pyspark.sql.functions import to_timestamp
+df = df.withColumn("start_timestamp", to_timestamp(df.start_timestamp, 'yyyy/MM/dd HH:mm:ss'))
+df = df.withColumn("end_timestamp", to_timestamp(df.end_timestamp, 'yyyy/MM/dd HH:mm:ss'))
+```
+
+4. lookup business_date
+```python
+# Assuming df2 is the dataframe to join with
+df = df.join(df2, (df.key >= df2.start_timestamp) & (df.key <= df2.end_timestamp), 'left')
+```
+
+5. generate business_date and cdc 2
+```python
+from pyspark.sql.functions import datediff, to_date, lit
+df = df.withColumn("cdc", datediff(to_date(lit('1986/05/11')), df.business_date) - 5973)
+```
+
+6. Select values 3
+```python
+df = df.select(df.fr_date, df.cdc)
+```
+
+7. generate business_date and cdc
+```python
+# Assuming dateAdd and dateDiff are defined functions
+from pyspark.sql.functions import expr
+df = df.withColumn("business_date", expr("dateAdd(fr_date, 'd', range(0, dateDiff(fr_date, current_date()) + 1))"))
+df = df.withColumn("cdc", expr("dateDiff('1986/05/11', business_date, 'd') - 5973"))
+df = df.withColumn("group", lit("fr_date"))
+```
+
+8. format
+```python
+df = df.select(df.fr_date, df.cdc, df.business_date, df.group)
+df = df.withColumn("business_date", df.business_date.cast("string"))
+df = df.withColumn("cdc", df.cdc.cast("integer"))
+```
+
+9. Filter rows
+```python
+df = df.filter(df.business_date.isNotNull())
+```
+
+10. YMD
+```python
+from pyspark.sql.functions import year, month, dayofmonth
+df = df.withColumn("year", year(df.business_date))
+df = df.withColumn("month", month(df.business_date))
+df = df.withColumn("day", dayofmonth(df.business_date))
+```
+
+11. Copy rows to result
+```python
+# Assuming df_final is the final dataframe
+df_final = df
+```
+
+Please note that some steps are not included in the sequence as they are not connected to any other steps in the hop order file. Also, some assumptions are made for the steps that require additional information not provided in the steps file.

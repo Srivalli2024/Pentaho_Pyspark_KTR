@@ -1,0 +1,93 @@
+<order>
+    <hop>
+      <from>Replace in string</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields market_name</from>
+      <to>Concat Fields selection_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Duplicate Date &amp; Time fields</from>
+      <to>Format Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Format Date &amp; Time fields</from>
+      <to>Insert/Update ztob_sportreport40</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input vSapBwSportReport40</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Placement_time business_id</from>
+      <to>Market_settlement_date business_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Market_settlement_date business_id</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get max date</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get last businessday</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Join</from>
+      <to>Get Variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get selection criteria</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Table input vSapBwSportReport40</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Modified Java Script Value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified Java Script Value</from>
+      <to>Get selection criteria</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Placement_time business_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Concat Fields match_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields match_name</from>
+      <to>Concat Fields market_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat Fields selection_name</from>
+      <to>Duplicate Date &amp; Time fields</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  

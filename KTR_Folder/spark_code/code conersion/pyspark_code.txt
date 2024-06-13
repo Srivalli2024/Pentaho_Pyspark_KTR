@@ -1,0 +1,122 @@
+Based on the hop order and steps file, the sequence of steps and corresponding Spark code would be as follows:
+
+1. BetType 2
+```python
+# Step 1: BetType 2
+df_BetType2 = spark.read.format('com.crealytics.spark.excel') \
+    .option('useHeader', 'true') \
+    .option('inferSchema', 'true') \
+    .load('${input_path}\BetType.xls')
+```
+
+2. Select values
+```python
+# Step 2: Select values
+df_SelectValues = df_BetType2.select('BETTYPE', df_BetType2['Bet Type Description '].alias('BetTypeDescription'))
+```
+
+3. BetType
+```python
+# Step 3: BetType
+df_SelectValues.write.parquet('maprfs:///raw/common/MasterDataCodeDescription/BetType', mode='overwrite')
+```
+
+4. Microsoft Excel Input 2 2
+```python
+# Step 4: Microsoft Excel Input 2 2
+df_MicrosoftExcelInput22 = spark.read.format('com.crealytics.spark.excel') \
+    .option('useHeader', 'true') \
+    .option('inferSchema', 'true') \
+    .load('${input_path}\Commingling.xls')
+```
+
+5. Replace in string
+```python
+# Step 5: Replace in string
+from pyspark.sql.functions import regexp_replace
+df_ReplaceInString = df_MicrosoftExcelInput22.withColumn('MeetingDate', regexp_replace('MeetingDate', ' 00:00:00.000', ''))
+```
+
+6. Select values 2 2
+```python
+# Step 6: Select values 2 2
+df_SelectValues22 = df_ReplaceInString.select('MeetingDate', 'ClubMeeting', 'ComminglingIndicater')
+```
+
+7. Commingling
+```python
+# Step 7: Commingling
+df_SelectValues22.write.parquet('maprfs:///raw/common/MasterDataCodeDescription/Commingling', mode='overwrite')
+```
+
+8. Microsoft Excel Input 2 2 2
+```python
+# Step 8: Microsoft Excel Input 2 2 2
+df_MicrosoftExcelInput222 = spark.read.format('com.crealytics.spark.excel') \
+    .option('useHeader', 'true') \
+    .option('inferSchema', 'true') \
+    .load('${input_path}\Location.xls')
+```
+
+9. Replace in string 2
+```python
+# Step 9: Replace in string 2
+df_ReplaceInString2 = df_MicrosoftExcelInput222.withColumn('LocationID', regexp_replace('LocationID', '.0', ''))
+```
+
+10. Select values 2 2 2
+```python
+# Step 10: Select values 2 2 2
+df_SelectValues222 = df_ReplaceInString2.select(df_ReplaceInString2['Location Type '].alias('LocationType'), 'LocationID')
+```
+
+11. Location
+```python
+# Step 11: Location
+df_SelectValues222.write.parquet('maprfs:///raw/common/MasterDataCodeDescription/Location', mode='overwrite')
+```
+
+12. Microsoft Excel Input 2
+```python
+# Step 12: Microsoft Excel Input 2
+df_MicrosoftExcelInput2 = spark.read.format('com.crealytics.spark.excel') \
+    .option('useHeader', 'true') \
+    .option('inferSchema', 'true') \
+    .load('${input_path}\ClubID.xls')
+```
+
+13. ClubID
+```python
+# Step 13: ClubID
+df_MicrosoftExcelInput2.write.parquet('maprfs:///raw/common/MasterDataCodeDescription/ClubID', mode='overwrite')
+```
+
+14. Microsoft Excel Input 2 2 2 2
+```python
+# Step 14: Microsoft Excel Input 2 2 2 2
+df_MicrosoftExcelInput2222 = spark.read.format('com.crealytics.spark.excel') \
+    .option('useHeader', 'true') \
+    .option('inferSchema', 'true') \
+    .load('${input_path}\Subsume.xls')
+```
+
+15. Replace in string 3
+```python
+# Step 15: Replace in string 3
+df_ReplaceInString3 = df_MicrosoftExcelInput2222.withColumn('Meeting Date', regexp_replace('Meeting Date', ' 00:00:00.000', '')) \
+    .withColumn('Rec No', regexp_replace('Rec No', '.0', ''))
+```
+
+16. Select values 2 2 2 2
+```python
+# Step 16: Select values 2 2 2 2
+df_SelectValues2222 = df_ReplaceInString3.select(df_ReplaceInString3['Rec No'].alias('RecNo'), df_ReplaceInString3['Meeting Date'].alias('MeetingDate'), df_ReplaceInString3['Club Meeting'].alias('ClubMeeting'), 'Actual Meeting')
+```
+
+17. Subsume
+```python
+# Step 17: Subsume
+df_SelectValues2222.write.parquet('maprfs:///raw/common/MasterDataCodeDescription/Subsume', mode='overwrite')
+```
+
+Please note that the actual Spark code may vary depending on the specific environment and Spark version.

@@ -1,0 +1,93 @@
+<order>
+    <hop>
+      <from>mj-merge_data</from>
+      <to>gsi-get_yesterday</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator</from>
+      <to>Clone row</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Clone row</from>
+      <to>Calculator 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>crtr-copy_to_next_step</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gv-get_business_date</from>
+      <to>mj-merge_data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator 2</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Join</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gsi-get_yesterday</from>
+      <to>frmla-update_variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ti-get_endate</from>
+      <to>Calculator 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator 3</from>
+      <to>mj-merge_data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>sv-select_from_to_date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>frmla-update_variables</from>
+      <to>Switch / Case</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>Filter rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>sv-select_from_to_date 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-select_from_to_date</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Calculator</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-select_from_to_date 2</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gv-parameter</from>
+      <to>Merge Join</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  
